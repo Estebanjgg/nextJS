@@ -1,47 +1,24 @@
-import Head from 'next/head';
-import Link from '../src/components/Link';
+// faq.js
+import FAQScreen from '../src/screens/FAQScreen';
 
+export default FAQScreen; 
 
 export async function getStaticProps() {
-    console.log('Rodando somente em build time')
-    const FAQ_API_URL = 'https://gist.githubusercontent.com/hermanitoPro/8580efcf6e8dbeaadee44be70d715150/raw/5452779b6530bdcf1343722cbb8e3b39bfa9a461/teste.json'
+    console.log('Em modo DEV, sempre roda! A cada acesso')
+    console.log('Roda SOMENTE em build time')
+    const FAQ_API_URL = 'https://gist.githubusercontent.com/hermanitoPro/8580efcf6e8dbeaadee44be70d715150/raw/5452779b6530bdcf1343722cbb8e3b39bfa9a461/teste.json';
     const faq = await fetch(FAQ_API_URL)
-        .then((respostaDoServidor) =>{
-             return respostaDoServidor.json();
-    })
-    .then((resposta) => {
-         return resposta;
-      })  
+        .then((respostaDoServidor) => {
+            return respostaDoServidor.json();
+        })
+        .then((resposta) => {
+            return resposta;
+        });
 
     return {
       props: {
-        qualquercosisa : 'que eu passar aqui',
-        faq,
-      }, // will be passed to the page component as props
-    }
-  }
-
-export default function FAQPage({faq}) {
-    return (
-        <div>
-              <Head>
-      <title> FAQ- Alura Cases Campanha</title>
-      </Head>
-            <h1>Alura Cases - Páginas de Perguntas FAQ</h1>
-            <Link href="/">
-                Ir para a home
-            </Link>
-            <ul>
-                {faq.map(({ answer, question}) => (
-                <li key={question}>
-                    <article>
-                        <h2>{question}</h2>
-                        <p>{answer}</p>
-                    </article>
-
-                </li>
-                ))}
-            </ul>
-        </div>
-    )
-}
+          qualquercoisa: 'que eu passar aqui',
+          faq,
+      },
+    };
+}  
